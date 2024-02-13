@@ -1,4 +1,6 @@
-import controller.StringAdder;
+package org.example;
+
+import org.example.controller.StringAdder;
 
 public class Main {
     public static void main(String[] args) {

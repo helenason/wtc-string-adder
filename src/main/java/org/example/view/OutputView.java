@@ -1,4 +1,4 @@
-package view;
+package org.example.view;
 
 public class OutputView {
     public void writeResult(int result) {

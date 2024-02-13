@@ -1,8 +1,8 @@
-package controller;
+package org.example.controller;
 
-import model.Expression;
-import view.InputView;
-import view.OutputView;
+import org.example.model.Expression;
+import org.example.view.InputView;
+import org.example.view.OutputView;
 
 import java.util.List;
 
