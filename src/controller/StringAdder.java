@@ -14,9 +14,28 @@ public class StringAdder {
 
         String[] tokens = separateSentence(input);
 
+        int result = calculate(tokens);
+
+        outputView.writeResult(result);
+
     }
 
     private String[] separateSentence(String input) {
         return input.split(",|:");
+    }
+
+    private int calculate(String[] tokens) {
+
+        int result = 0;
+
+        for (String token : tokens) {
+            result += stringToInt(token);
+        }
+
+        return result;
+    }
+
+    private int stringToInt(String token) {
+        return Integer.parseInt(token);
     }
 }
