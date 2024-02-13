@@ -17,16 +17,21 @@ public class InputView {
 
         String input = scanner.nextLine();
 
-        final Matcher m = Pattern.compile(FORMAT_OF_CUSTOM_EXPRESSION).matcher(input);
-        if (m.find()) {
+        final Matcher matcher = Pattern.compile(FORMAT_OF_CUSTOM_EXPRESSION).matcher(input);
+        if (matcher.find()) {
             // 커스텀 구분자의 경우
-            String customDelimiter = m.group(1); // 첫번째 () 부분
-            String[] tokens = m.group(2).split(customDelimiter); // 두번째 () 부분
+            String delimiter = matcher.group(1); // 첫번째 () 부분
+            String expression = matcher.group(2); // 두번째 () 부분
+            String[] tokens = separateByDelimiter(expression, delimiter);
             return makeOperands(tokens);
         }
         // 기존 구분자의 경우
-        String[] tokens = input.split(DEFAULT_DELIMITER);
+        String[] tokens = separateByDelimiter(input, DEFAULT_DELIMITER);
         return makeOperands(tokens);
+    }
+
+    private String[] separateByDelimiter(String input, String delimiter) {
+        return input.split(delimiter);
     }
 
     private List<Integer> makeOperands(String[] tokens) {
