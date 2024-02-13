@@ -3,6 +3,8 @@ package controller;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class StringAdder {
 
     private static final InputView inputView = new InputView();
@@ -10,42 +12,23 @@ public class StringAdder {
 
     public void run() {
 
-        String input = inputView.readSentence();
+        List<Integer> operands = inputView.requestOperands();
 
-        // default 구분자 지정하기
-        String delimiter = ",|:";
-
-        // input 에 // 와 \n 이 포함된 경우 커스텀 구분자 지정하기
-        if (input.contains("//") && input.contains("\\n")) {
-            delimiter = String.valueOf(input.charAt(2));
-            input = input.substring(5);
-        }
-
-        String[] tokens = separateSentence(input, delimiter);
-
-        int result = calculate(tokens);
+        int result = addNumbers(operands);
 
         outputView.writeResult(result);
 
     }
 
-    private String[] separateSentence(String input, String delimiter) {
-        return input.split(delimiter);
-    }
-
-    private int calculate(String[] tokens) {
+    private int addNumbers(List<Integer> numbers) {
 
         int result = 0;
 
-        for (String token : tokens) {
-            // token: 분리된 숫자
-            result += stringToInt(token);
+        for (int number : numbers) {
+            result += number;
         }
 
         return result;
     }
 
-    private int stringToInt(String token) {
-        return Integer.parseInt(token);
-    }
 }
