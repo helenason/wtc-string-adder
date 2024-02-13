@@ -1,5 +1,6 @@
 package controller;
 
+import model.Expression;
 import view.InputView;
 import view.OutputView;
 
@@ -12,11 +13,16 @@ public class StringAdder {
 
     public void run() {
 
-        List<Integer> operands = inputView.requestOperands();
+        String input = inputView.requestExpression();
+
+        Expression expression = new Expression(input);
+        List<Integer> operands = expression.separateExpression();
 
         int result = addNumbers(operands);
 
         outputView.writeResult(result);
+
+        inputView.stopReading();
 
     }
 
